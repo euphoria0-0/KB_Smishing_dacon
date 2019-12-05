@@ -38,12 +38,17 @@
 - Ensemble
  
 
-## 6. Predict and Submission
+## 5. Predict and Submission
 - Submission for Public and Private
 - __issue : Inference time (스미싱 문자 예측에 걸리는 시간) 순위 30% 점수 반영__
   - train된 모델이 있을 때 test 데이터를 올바른 형태로 전처리+predict하는 시간입니다 (train 전처리와 모델 training 시간은 포함되지 않습니다).
 
+
+
 ------
+
+
+
 
 ## 고민일지(~12.05)
 1. 데이터 불균형으로 인한 샘플링 문제
