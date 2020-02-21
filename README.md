@@ -65,7 +65,7 @@
       └─ model.json
       └─ model.h5
       └─ tokenizer.pickle
-    ├── 2_Code_pred (here, Code_euphoria.ipynb)
+    ├── 2_Code_pred  (here, Code_euphoria.ipynb)
     ├── 3_Code_train (here, Code_euphoria.ipynb)
     ├── PPT
     ├── readme.txt
