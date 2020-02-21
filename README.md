@@ -50,8 +50,29 @@
   - train된 모델이 있을 때 test 데이터를 올바른 형태로 전처리+predict하는 시간입니다 (train 전처리와 모델 training 시간은 포함되지 않습니다).
 
 
+## 최종 제출을 위한 코드 정리 (01/14)
+
+- 최종 순위는 데이콘에서만 가지고 있는 private test 데이터를 사용하여 AUC와 inference time을 측정합니다.
+<code>
+  Code_euphoria
+</code>
+
+    ├── 0_Data
+      └─ train.csv
+      └─ test.csv
+    ├── 1_Model
+      └─ model.json
+      └─ model.h5
+      └─ tokenizer.pickle
+    ├── 2_Code_pred (here, Code_euphoria.ipynb)
+    ├── 3_Code_train (here, Code_euphoria.ipynb)
+    ├── PPT
+    ├── readme.txt
+  
+
 
 ------
+
 
 
 
@@ -81,28 +102,6 @@
 4. Seed
     - Seed를 데이터 샘플링 시에만 적용했더니 결과가 계속 다르닼ㅋㅋ...
     - np, tf, K 등에도 모두 seed 고정
-  
------
-
-## 최종 제출을 위한 코드 정리 (01/14)
-
-- 최종 순위는 데이콘에서만 가지고 있는 private test 데이터를 사용하여 AUC와 inference time을 측정합니다.
-<code>
-  Code_euphoria
-</code>
-
-    ├── 0_Data
-      └─ train.csv
-      └─ test.csv
-    ├── 1_Model
-      └─ model.json
-      └─ model.h5
-      └─ tokenizer.pickle
-    ├── 2_Code_pred (here, Code_euphoria.ipynb)
-    ├── 3_Code_train (here, Code_euphoria.ipynb)
-    ├── PPT
-    ├── readme.txt
-  
 
   
   
