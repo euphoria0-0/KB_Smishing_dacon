@@ -91,23 +91,15 @@
   Code_euphoria
   
     └─ 0_Data
-
       └─ train.csv
       └─ test.csv
-
     └─ 1_Model
-
       └─ model.json
       └─ model.h5
       └─ tokenizer.pickle
-
-    └─ 2_Code_pred
-
-    └─ 3_Code_train
-      ** 여기서는 Code_euphoria로 통일
-
+    └─ 2_Code_pred (here, Code_euphoria.ipynb)
+    └─ 3_Code_train (here, Code_euphoria.ipynb)
     └─ PPT
-
     └─ readme.txt
   
 </code>
