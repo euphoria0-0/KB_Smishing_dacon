@@ -49,9 +49,11 @@
 - Submission for Public and Private
 - __issue : Inference time (스미싱 문자 예측에 걸리는 시간) 순위 30% 점수 반영__
   - train된 모델이 있을 때 test 데이터를 올바른 형태로 전처리+predict하는 시간입니다 (train 전처리와 모델 training 시간은 포함되지 않습니다).
+- 모델 재생산성(reproducible results)을 위해 tensorflow seed, random seed, os seed 등을 고정시켰습니다.
+- 제출 시 모델 학습 및 예측 파일이 나뉘어져 있어 학습한 model, tokenizer 등은 함수를 만들어 따로 저장하고 로드 하였습니다.
 
 
-## 최종 제출을 위한 코드 정리 (01/14)
+## Submission folder (01/14)
 
 - 최종 순위는 데이콘에서만 가지고 있는 private test 데이터를 사용하여 AUC와 inference time을 측정합니다.
 <code>
