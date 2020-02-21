@@ -90,27 +90,27 @@
 <code>
   Code_euphoria
   
-  └─ 0_Data
+    └─ 0_Data
+
+      └─ train.csv
+      └─ test.csv
+
+    └─ 1_Model
+
+      └─ model.json
+      └─ model.h5
+      └─ tokenizer.pickle
+
+    └─ 2_Code_pred
+
+    └─ 3_Code_train
+      ** 여기서는 Code_euphoria로 통일
+
+    └─ PPT
+
+    └─ readme.txt
   
-    └─ train.csv
-    └─ test.csv
-    
-  └─ 1_Model
-  
-    └─ model.json
-    └─ model.h5
-    └─ tokenizer.pickle
-    
-  └─ 2_Code_pred
-  
-  └─ 3_Code_train
-    ** 여기서는 Code_euphoria로 통일
-    
-  └─ PPT
-  
-  └─ readme.txt
-  
-  
+</code>
   
   
 
