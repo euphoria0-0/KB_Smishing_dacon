@@ -1,4 +1,4 @@
-# KB_Smishing_dacon
+# Dacon_14th__Prediction_Smishing
 - dacon 14th : 금융문자 분석 경진대회
 - 주최: KB금융지주, DACON , KISA(한국인터넷진흥원)
 - 데이터: KB금융그룹 및 KISA(한국인터넷진흥원)에서 제공받은 정상문자와 스미싱 문자
@@ -89,20 +89,21 @@
 - 최종 순위는 데이콘에서만 가지고 있는 private test 데이터를 사용하여 AUC와 inference time을 측정합니다.
 <code>
   Code_euphoria
-  
-    └─ 0_Data
+</code>
+
+    ├── 0_Data
       └─ train.csv
       └─ test.csv
-    └─ 1_Model
+    ├── 1_Model
       └─ model.json
       └─ model.h5
       └─ tokenizer.pickle
-    └─ 2_Code_pred (here, Code_euphoria.ipynb)
-    └─ 3_Code_train (here, Code_euphoria.ipynb)
-    └─ PPT
-    └─ readme.txt
+    ├── 2_Code_pred (here, Code_euphoria.ipynb)
+    ├── 3_Code_train (here, Code_euphoria.ipynb)
+    ├── PPT
+    ├── readme.txt
   
-</code>
+
   
   
 
