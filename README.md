@@ -89,17 +89,25 @@
 - 최종 순위는 데이콘에서만 가지고 있는 private test 데이터를 사용하여 AUC와 inference time을 측정합니다.
 <code>
   Code_euphoria
+  
   └─ 0_Data
+  
     └─ train.csv
     └─ test.csv
+    
   └─ 1_Model
+  
     └─ model.json
     └─ model.h5
     └─ tokenizer.pickle
+    
   └─ 2_Code_pred
+  
   └─ 3_Code_train
     ** 여기서는 Code_euphoria로 통일
+    
   └─ PPT
+  
   └─ readme.txt
   
   
