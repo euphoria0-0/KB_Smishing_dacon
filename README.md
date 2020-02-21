@@ -8,34 +8,40 @@
   - 정상인 문자 277,242건, 스미싱 문자 18,703건으로 데이터 불균형 현상(93.7%:6.3%)
   - <code> Counter({0: 277242, 1: 18703})
   0.0631975535994864 </code>
-- 
+
 ## 2. Sampling
 - Mixed Sampling
-  - 정상 문자 중 ~건 비복원추출, 스미싱 문자 18,703건을 복원추출
+  - 정상 문자 중 93,515건 __비복원추출__, 스미싱 문자 18,703x2건을 __복원추출__
   
 ## 3. Preprocessing
-- 한글, 영어만 세팅
-- XXX, XXXXX 등 비식별 처리된 개인정보 혹은 금융회사정보는 지움
-- Mecab Tokenizer 사용
-  - Dacon에서 배포한 윈도우용 Mecab 사용(Colab)
-  - 로컬은 우분투 Mecab
+- Text Cleaning
+  - Mecab을 이용하여 텍스트를 정제합니다.
+    - 영문은 소문자화하고 한글, 영문 제외 모두 제거하였습니다.
+    - 영문 중 xxx 등으로 비식별처리된 정보(개인,금융회사)는 모두 제거하였습니다.
+    - 속도(inference time)을 고려해야 하므로 빠른 Mecab 형태소 분석기를 선택하였습니다.
+  - Bi-gram을 생성합니다.
+  - 모델을 학습하기 위해 텍스트 데이터를 시퀀스 데이터로 변환합니다. (integer encoding)
+  - max_len을 정하기 위해 EDA를 하여 적당한 len을 결정하였습니다.
 
 ## 4. Modeling
-- Baseline: RandomForest, Logistic Regression, Naive Bayes 등 사용
-  - RandomForest(하이퍼파라미터 수정 전)만으로 (수정버전)0.94가 나옴
-- RNN
-  - Simple RNN
-  - LSTM
-  - Bi-directed LSTM
-  - ~~GRU~~
-  - ~~Bi-directed GRU~~
-- ConvRNN
-  - ConvRNN
-  - ConvLSTM
-  - ConvGRU
-  
-  
-- Ensemble
+- 시도한 모델들
+  - Baseline: RandomForest, Logistic Regression, Naive Bayes 등 사용
+    - RandomForest(하이퍼파라미터 수정 전)만으로 (수정버전)0.94가 나옴
+  - RNN
+    - Simple RNN
+    - LSTM
+    - Bi-directed LSTM: 0.96~9.99
+    - ~~Bi-directed GRU~~:0.95~0.97
+  - CNN+RNN
+    - ConvRNN
+    - ConvLSTM
+    - ConvGRU
+  - Ensemble
+- Build Model
+  - 모델 평가 지표는 AUC입니다.
+  - 모델은 Bi-LSTM (Bi-Directional Long Short Term Memory)을 사용하였습니다.
+  - 텍스트는 Bi-gram을 sequence로 변환한 데이터로 학습하였습니다.
+  - EarlyStopping으로 과도한 학습을 하지 않고 적당한 score에 도달하면 조기종료 할 수 있도록 합니다.
  
 
 ## 5. Predict and Submission
@@ -78,38 +84,27 @@
   
 -----
 
-## 본선 진출! 최종 제출을 위한 코드 정리 (01/14)
+## 최종 제출을 위한 코드 정리 (01/14)
 
-- 최종 순위는 상위 20등의 코드를 받아 내부 평가를 통해 최종 순위를 결정합니다.
 - 최종 순위는 데이콘에서만 가지고 있는 private test 데이터를 사용하여 AUC와 inference time을 측정합니다.
-
-- 제출 양식에는 4개의 폴더 외 2개의 파일을 포함하고 있습니다.
+<code>
+  Code_euphoria
+  └─ 0_Data
+    └─ train.csv
+    └─ test.csv
+  └─ 1_Model
+    └─ model.json
+    └─ model.h5
+    └─ tokenizer.pickle
+  └─ 2_Code_pred
+  └─ 3_Code_train
+    ** 여기서는 Code_euphoria로 통일
+  └─ PPT
+  └─ readme.txt
   
-  - 폴더 1, 0_Data
-    - 이번 대회에서 사용하신 train.csv, public_test.csv 파일을 Data 파일에 넣어 주시기 바랍니다.
-
-  - 폴더 2, 1_Model
-    - 생성한 모델 파일을 넣어 주시기 바랍니다.
-
-  - 폴더 3, 2_Code_pred
-    - 예측을 위한 코드 입니다. 해당 폴더 내 코드를 사용하여 AUC와 inference time을 측정합니다.
-    - get_prediction 함수 내에 test 파일 로드, 전처리, 모델 로드, 예측 코드가 포함되어야 합니다.
-    - 이 함수는 test 파일 경로를 입력으로 받고 예측값을 포함하는 데이터프레임을 출력합니다.
-    - (같은 폴더의 인풋데이터_아웃풋데이터_예시.JPG 참고)
-
-  - 폴더 4, 3_Code_train
-    - 모델 생성을 위한 코드 양식 입니다. 1_Model에 저장되는 파일을 구현해야 합니다. 파일 내 상세 안내를 참고해 주시기 바랍니다.
-
-  - 파일 1, PPT_제출_양식.pptx
-    - 코드를 설명하는 PPT를 자유롭게 작성해 주시기 바랍니다.
-
-  - 파일 2, readme.txt
-    - 양식에 포함된 폴더에 대한 간단 설명입니다.
-
-- 코드 제출 시 주의 사항은 다음과 같습니다.
-  1. 0_Data 폴더에 사용하신 train.csv, public_test.csv 파일을 넣어주셔야 합니다. 팀원이 여러 명이고 각 팀원이 각각 데이터를 다운받았을 시 팀에서 사용하신 파일을 모두 동봉해 주시기 바랍니다.
-  2. 모든 코드는 오류없이 실행 되어야 합니다.
-    - 주의 사항이 지켜지지 않을 시 평가가 불가능함을 안내해드립니다.
+  
+  
+  
 
 
 
